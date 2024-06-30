@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image:url('https://3.bp.blogspot.com/-ZmjZ7Ro4w4A/V87Z2wnNSXI/AAAAAAAAACE/h25Cbez_CVUoT6xHVRKrm8oP7IkXeTtWwCLcB/w1200-h630-p-k-no-nu/khodam-macan-putih.jpg');
+            background-size: cover;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+            text-align: center; /* Pusatkan form */
+            width: 300px; /* Lebar form */
+            margin: 0 auto; /* Pusatkan form secara horizontal */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left; /* Posisikan label ke kiri */
+        }
+        h1 {
+            text-shadow: 50px;
+        }
+        input {
+            width: calc(100% - 22px); /* Lebar input mengikuti lebar form dengan padding dikurangi */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box; /* Atur box-sizing agar padding tidak menambah lebar */
+        }
+        button {
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #882121;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px; /* Ubah padding menjadi 20px */
+            max-width: 300px; /* Atur lebar maksimum */
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto; /* Pusatkan secara horizontal dengan margin atas dan bawah 20px */
+        }
+        #result img {
+            max-width: 150px; /* Atur lebar maksimum gambar */
+            border-radius: 50%;
+            display: block; /* Pastikan gambar tampil di tengah */
+            margin: 0 auto 10px; /* Pusatkan gambar secara horizontal dan tambahkan margin bawah */
+        }
+        #khodam-name {
+            text-align: center; /* Pusatkan teks nama */
+        }
+        #khodam-info {
+            text-align: center; /* Pusatkan teks informasi */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center">Cek Khodam</h1>
+    <form id="cek-khodam-form">
+        <label for="name">Nama Manusia:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <button type="submit">Cek Khodam</button>
+    </form>
+    <div id="result" style="display: none;">
+        <img id="khodam-photo" src="" alt="Foto Khodam">
+        <h2 id="khodam-name"></h2>
+        <p id="khodam-info"></p>
+    </div>
+    <script>
+        document.getElementById('cek-khodam-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+
+            // Logika untuk analisis khodam
+            const khodam = analyzeKhodam(name);
+
+            // Menampilkan hasil
+            document.getElementById('khodam-photo').src = khodam.photo;
+            document.getElementById('khodam-name').innerText = khodam.name;
+            document.getElementById('khodam-info').innerText = khodam.info;
+            document.getElementById('result').style.display = 'block';
+        });
+
+        function analyzeKhodam(name) {
+            // Data khodam
+            const khodams = [
+                { 
+                    name: 'Gadun', 
+                    photo: 'https://1.bp.blogspot.com/-W6CZZrVBLu4/VK2Cf_MuRRI/AAAAAAAAIto/JfCUlUDbQyE/s1600/gambar%2Bsinga%2Bdi%2Bpadang%2Bpasir.jpg', 
+                    info: 'Khodam: Singa. Gadun memiliki sifat yang berani dan penuh kekuatan.' 
+                },
+                { 
+                    name: 'Dade', 
+                    photo: 'https://www.moondoggiesmusic.com/wp-content/uploads/2019/03/Burung-Hantu.jpg', 
+                    info: 'Khodam: Burung Hantu. Dade selalu bijaksana dalam mengambil keputusan.' 
+                },
+                { 
+                    name: 'Citra', 
+                    photo: 'https://i.pinimg.com/originals/b4/ce/91/b4ce91886482681343460700f4b5fcd1.jpg', 
+                    info: 'Khodam: Kupu-kupu. Citra dikenal karena keindahannya dan kepribadian yang lembut.' 
+                },
+                { 
+                    name: 'Dewi', 
+                    photo: 'https://asset.kompas.com/crops/5552xK4dJYsUI_DvXxiWWBe5vnY=/2x36:1000x702/750x500/data/photo/2022/10/27/635a4bacc6914.jpg', 
+                    info: 'Khodam: Merpati. Dewi memiliki hati yang penuh kasih dan damai.' 
+                },
+                { 
+                    name: 'ham', 
+                    photo: 'https://2.bp.blogspot.com/-krtZRM7JWXY/UWLgcGUghpI/AAAAAAAAAJM/eYO4jjhgOdk/s640-c/african_elephant_male_01.jpg', 
+                    info: 'Khodam: Gajah. ham adalah sosok yang kuat dan penuh dengan kebijaksanaan.' 
+                },
+                { 
+                    name: 'indah', 
+                    photo: 'https://4.bp.blogspot.com/-kW5k-rG9pVY/UPDKELKn0HI/AAAAAAAAD_U/0G_gtomvqXo/s1600/kucing-jantan.jpg', 
+                    info: 'Khodam: Kucing. indah adalah sosok yang cerdas dan lincah.' 
+                },
+                { 
+                    name: 'Gita', 
+                    photo: 'https://3.bp.blogspot.com/-31yp1RK-9hs/URM6m-z87fI/AAAAAAAADnY/tApEQSLhzlw/s1600/Gambar+Kuda_09.jpg', 
+                    info: 'Khodam: Kuda. Gita memiliki semangat yang tinggi dan selalu penuh dengan energi.' 
+                },
+                { 
+                    name: 'Habib', 
+                    photo: 'https://1.bp.blogspot.com/-OyLq9eO3U5o/XbJ5efTOM7I/AAAAAAAAFbM/BpJvc66GNk8zYmJuAuDxIOKZJMF69En5wCLcBGAsYHQ/s1600/timthumb5.jpg', 
+                    info: 'Khodam: Anjing. Habib adalah sosok yang setia dan penuh dengan keberanian.' 
+                },
+                { 
+                    name: 'Ika', 
+                    photo: 'https://images.tokopedia.net/blog-tokopedia-com/uploads/2020/11/katak-kodok.jpg', 
+                    info: 'Khodam: Katak. Ika dikenal karena kepekaannya dan kemampuannya dalam beradaptasi.' 
+                },
+                { 
+                    name: 'rama', 
+                    photo: 'https://asset-a.grid.id/crop/0x0:0x0/x/photo/2022/03/22/whatsapp-image-2022-03-22-at-17-20220322055355.jpeg', 
+                    info: 'Khodam: Singa Laut. rama memiliki jiwa petualang dan keberanian yang besar.' 
+                },
+                { 
+                    name: 'Kartika', 
+                    photo: 'https://asset.kompas.com/crops/54SShU9pqbKUip1GbxHvBNQCR8I=/33x15:1264x836/1200x800/data/photo/2022/11/11/636dcb6168974.jpg', 
+                    info: 'Khodam: Angsa. Kartika adalah sosok yang elegan dan penuh dengan kelembutan.' 
+                },
+                { 
+                    name: 'Faras', 
+                    photo: 'https://1001indonesia.net/asset/2016/05/Badak-Jawa.jpg', 
+                    info: 'Khodam: Badak. Faras adalah sosok yang kuat dan teguh dalam prinsipnya.' 
+                },
+                { 
+                    name: 'Mira', 
+                    photo: 'https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1563124947/easqxkmczlpfetof0wwb.jpg', 
+                    info: 'Khodam: Jerapah. Mira adalah sosok yang penuh dengan kesabaran dan ketinggian hati.' 
+                },
+                { 
+                    name: 'Nina', 
+                    photo: 'https://magetan.satujam.com/wp-content/uploads/2016/05/kelelawar-1.jpg?strip=all&lossy=1&ssl=1', 
+                    info: 'Khodam: Kelelawar. Nina memiliki intuisi yang tajam dan kemampuan adaptasi yang baik.' 
+                },
+                { 
+                    name: 'Oscar', 
+                    photo: 'https://3.bp.blogspot.com/-7eRaHmaFq1U/Us9ikAuhXUI/AAAAAAAAAd0/jyCRfHFgAlk/s1600/harimau+3.jpg', 
+                    info: 'Khodam: Harimau. Oscar adalah sosok yang penuh dengan keberanian dan kekuatan.' 
+                },
+                { 
+                    name: 'Putri', 
+                    photo: 'https://wallpapercave.com/wp/wp2674711.jpg', 
+                    info: 'Khodam: Merak. Putri adalah sosok yang indah dan penuh dengan keanggunan.' 
+                },
+                { 
+                    name: 'Rudi', 
+                    photo: 'https://4.bp.blogspot.com/-hnt3Kw7dW5I/WDpicBpy27I/AAAAAAAAJ9w/dTFm6IT8yfU0zAcP-jtSj-C5yppKrNxvgCLcB/s1600/BERUANG%2BCOKELAT.jpg', 
+                    info: 'Khodam: Beruang. Rudi adalah sosok yang kuat dan melindungi orang-orang di sekitarnya.' 
+                },
+                { 
+                    name: 'Santi', 
+                    photo: 'https://3.bp.blogspot.com/-BiS0KGq94s4/UoYOEsmjAeI/AAAAAAAABJM/Ir3JwqxPp2I/s1600/Serigala.jpg', 
+                    info: 'Khodam: Serigala. Santi adalah sosok yang cerdas dan penuh dengan keberanian.' 
+                },
+                { 
+                    name: 'Tono', 
+                    photo: 'https://4.bp.blogspot.com/-90ZK2_QwFfU/U3tSiK3L3-I/AAAAAAAAAQE/4XnRH5mIEck/s1600/kuda-nil.jpg', 
+                    info: 'Khodam: Kuda Nil. Tono adalah sosok yang tenang namun memiliki kekuatan dalam ketenangannya.' 
+                },
+                { 
+                    name: 'Ulfa', 
+                    photo: 'https://mansfieldzoo.com.au/wp-content/uploads/2015/01/Rusa-Deer-1.jpg', 
+                    info: 'Khodam: Rusa. Ulfa adalah sosok yang lembut namun tangguh dalam menghadapi tantangan.' 
+                },
+                { 
+                    name: 'Vina', 
+                    photo: 'https://2.bp.blogspot.com/-wI-kCgEZk5A/UwbHw8AJVtI/AAAAAAAACFQ/uNdWQvVa5Vs/s1600/gambar+burung+elang.jpg', 
+                    info: 'Khodam: Elang. Vina adalah sosok yang memiliki pandangan luas dan berjiwa pahlawan.' 
+                },
+                { 
+                    name: 'Wawan', 
+                    photo: 'https://arenahewan.com/wp-content/uploads/2018/02/Kelinci-hias-penyakit-kelinci-dan-kelinci-lucu.jpg', 
+                    info: 'Khodam: Kelinci. Wawan adalah sosok yang ceria dan memiliki kepekaan terhadap lingkungan sekitarnya.' 
+                },
+                { 
+                    name: 'Xavier', 
+                    photo: 'https://images5.alphacoders.com/369/369059.jpg', 
+                    info: 'Khodam: Panda. Xavier adalah sosok yang langka dan memiliki daya tarik tersendiri.' 
+                },
+                { 
+                    name: 'Yanti', 
+                    photo: 'https://2.bp.blogspot.com/-ruR_FAUp_lU/VrGIxRenJqI/AAAAAAAAe1g/4tEHgzoUUBw/s1600/lumba-lumba.jpg', 
+                    info: 'Khodam: Lumba-lumba. Yanti adalah sosok yang cerdas dan memiliki kepekaan terhadap lingkungan air.' 
+                },
+                { 
+                    name: 'Zain', 
+                    photo: 'https://www.ruparupa.com/blog/wp-content/uploads/2020/12/Screen-Shot-2020-12-11-at-11.38.21.png', 
+                    info: 'Khodam: Ikan Koi. Zain adalah sosok yang indah dan membawa keberuntungan.' 
+                },
+                { 
+                    name: 'Andi', 
+                    photo: 'https://1.bp.blogspot.com/-1y3oYKAsGTU/Ti3hUgA34KI/AAAAAAAAAQA/jezXyQAUorA/s1600/Gajah.jpg', 
+                    info: 'Khodam: Gajah. Andi adalah sosok yang kuat dan penuh dengan kebijaksanaan.' 
+                },
+                { 
+                    name: 'Bambang', 
+                    photo: 'https://pixfeeds.com/images/topic/8339/1200-8339-cobra-snake-photo1.jpg', 
+                    info: 'Khodam: Ular. Bambang memiliki ketangkasan dan kecerdikan dalam menghadapi situasi.' 
+                },
+                { 
+                    name: 'Cindy', 
+                    photo: 'https://materikimia.com/wp-content/uploads/2019/07/Gambar-Burung-Merpati.jpg', 
+                    info: 'Khodam: Merpati. Cindy adalah sosok yang penuh kasih dan selalu damai.' 
+                },
+                { 
+                    name: 'Dini', 
+                    photo: 'https://cdn-cas.orami.co.id/parenting/images/kucing_gemas-1.width-800.jpg', 
+                    info: 'Khodam: Kucing. Dini adalah sosok yang cerdas dan lincah.' 
+                },
+                { 
+                    name: 'Edo', 
+                    photo: 'https://media.istockphoto.com/id/1148943728/id/foto/singa-laut.jpg?s=612x612&w=0&k=20&c=rKFuBeI4l6YNwS5a7W5pcygZ9NZX4v4yjsLqzB7J4HE=', 
+                    info: 'Khodam: Singa Laut. Edo memiliki semangat petualang dan keberanian yang besar.' 
+                },
+                { 
+                    name: 'indri', 
+                    photo: 'https://jualayamhias.com/wp-content/uploads/2015/11/angsa-indukan.1.jpg', 
+                    info: 'Khodam: Angsa. indri adalah sosok yang elegan dan penuh dengan kelembutan.' 
+                },
+                
+            ];
+
+            // Cari khodam berdasarkan nama yang cocok
+            const selectedKhodam = khodams.find(khodam => khodam.name.toLowerCase() === name.toLowerCase());
+
+            if (selectedKhodam) {
+                return selectedKhodam;
+            } else {
+                // Jika tidak ditemukan, kembalikan khodam default atau pesan lainnya
+                return {
+                    name: 'Tidak ditemukan',
+                    photo: 'https://via.placeholder.com/150?text=Khodam+Default',
+                    info: 'Khodam dengan nama ini tidak ditemukan.'
+                };
+            }
+        }
+    </script>
+</body>
+</html>
